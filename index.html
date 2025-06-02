@@ -36,7 +36,7 @@
           </button>
         </div>
 
-        <table class="table table-hover table-striped">
+        <table class="table table-hover table-striped tasks-table">
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -45,43 +45,33 @@
               <th scope="col">Actions</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Doing homework</td>
-              <td>01-07-2025</td>
-              <td>
-                <button class="btn btn-danger">D</button>
-                <button class="btn btn-primary">E</button>
-              </td>
-            </tr>
-          </tbody>
+          <tbody></tbody>
         </table>
       </section>
 
       <!-- ! Modal  -->
       <div
-        class="modal fade"
+        class="modal fade task-modal"
         id="task-modal"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">
-                Task Title
-              </h1>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              <form class="g-3 needs-validation" novalidate>
+        <form class="g-3 needs-validation task-form" novalidate>
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">
+                  Task Title
+                </h1>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
                 <div class="mb-3">
                   <label for="taskName" class="form-label">Task Name</label>
                   <input
@@ -105,27 +95,23 @@
                   <div class="invalid-feedback">Please fill!</div>
                 </div>
                 <div class="mb-3">
-                  <label for="select-level" class="form-label">Important</label>
-                  <select
-                    class="form-select"
-                    id="select-level"
-                    required
-                  ></select>
+                  <label for="taskLevel" class="form-label">Important</label>
+                  <select class="form-select" id="taskLevel" required></select>
                 </div>
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button type="button" class="btn btn-primary">Add</button>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button type="submit" class="btn btn-primary">Add</button>
+              </div>
             </div>
           </div>
-        </div>
+        </form>
       </div>
     </main>
     <script
