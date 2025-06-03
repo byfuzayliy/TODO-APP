@@ -39,18 +39,24 @@ function getTaskCard({ taskName, taskTime, taskLevel }, i) {
   console.log(levelColor);
 
   return `<tr>
-            <th scope="row">${i + 1}</th>
-            <td class="text-${levelColor[taskLevel]}">${taskName}</td>
-            <td>${taskTime}</td>
-            <td>
-              <button class="btn btn-primary">
-                  <img src="./assets/image/edit.png" alt="" />
-                </button>
-                <button class="btn btn-danger">
-                  <img src="./assets/image/bin.png" alt="" />
-                </button>
-              </td>
-            </tr>`;
+  <th scope="row">${i + 1}</th>
+  <td colspan="3">
+    <div class="d-flex justify-content-between w-100">
+      <span>${taskName}</span>
+      <span  class="badge bg-${levelColor[taskLevel]}">${taskTime}</span>
+    </div>
+    <div class="d-flex gap-2 mt-2 w-100">
+      <button class="btn btn-primary btn-sm w-50">
+        <img src="./assets/image/edit.png" alt="Edit" />
+      </button>
+      <button class="btn btn-danger btn-sm w-50">
+        <img src="./assets/image/bin.png" alt="Delete" />
+      </button>
+    </div>
+  </td>
+</tr>
+
+`;
 }
 
 function getTasks() {
