@@ -17,13 +17,17 @@
       <section class="container todo">
         <div class="d-flex justify-content-between">
           <h2>Todo</h2>
-          <button class="btn btn-primary">
+          <button id="theme-toggle" class="btn btn-primary modebtn">
             <img src="./assets/image/mode.png" alt="" />
           </button>
         </div>
 
         <div class="input-group my-3">
-          <input type="text" class="form-control" placeholder="Searching..." />
+          <input
+            type="text"
+            class="form-control search-input"
+            placeholder="Searching..."
+          />
           <span class="input-group-text" id="basic-addon2"
             ><select class="form-select" id="filter-level"></select
           ></span>
@@ -107,7 +111,9 @@
                 >
                   Close
                 </button>
-                <button type="submit" class="btn btn-primary">Add</button>
+                <button type="submit" class="add-modal-btn btn btn-primary">
+                  Add
+                </button>
               </div>
             </div>
           </div>
@@ -119,6 +125,7 @@
       integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
       crossorigin="anonymous"
     ></script>
+    <script src="./js/mode.js"></script>
     <script src="./js/levels.js"></script>
     <script src="./js/main.js"></script>
   </body>

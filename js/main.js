@@ -5,7 +5,13 @@ let taskmodal = document.querySelector(".task-modal");
 let tasksTable = document.querySelector(".tasks-table tbody");
 let openModalBtn = document.querySelector(".open-modal-btn");
 let tasksJson = localStorage.getItem("tasks");
+let searchInput = document.querySelector(".search-input");
+let addModalBtn = document.querySelector(".add-modal-btn ");
 let tasks = JSON.parse(tasksJson) || [];
+
+let selected = null;
+let search = "";
+let level = "All";
 filterLevel.innerHTML += `<option>All</option>`;
 levels.map((level) => {
   filterLevel.innerHTML += `<option>${level}</option>`;
@@ -22,7 +28,13 @@ taskForm.addEventListener("submit", function (e) {
       taskTime: taskTime.value,
       taskLevel: taskLevel.value,
     };
-    tasks.push(task);
+
+    if (selected === null) {
+      tasks.push(task);
+    } else {
+      tasks[selected] = task;
+    }
+
     localStorage.setItem("tasks", JSON.stringify(tasks));
     bootstrap.Modal.getInstance(taskmodal).hide();
     this.classList.remove("was-validated");
@@ -60,10 +72,20 @@ function getTaskCard({ taskName, taskTime, taskLevel }, i) {
 }
 
 function getTasks() {
-  tasksTable.innerHTML = "";
-  tasks.map((task, i) => {
-    tasksTable.innerHTML += getTaskCard(task, i);
-  });
+  let result = tasks.filter((task) =>
+    task.taskName.toLowerCase().includes(search)
+  );
+  if (level !== "All") {
+    result = result.filter((task) => task.taskLevel === level);
+  }
+  if (result.length !== 0) {
+    tasksTable.innerHTML = "";
+    result.map((task, i) => {
+      tasksTable.innerHTML += getTaskCard(task, i);
+    });
+  } else {
+    tasksTable.innerHTML = `<td class="text-center" colspan="4">No tasks</td>`;
+  }
 }
 
 getTasks();
@@ -80,6 +102,8 @@ const deleteTask = (id) => {
 };
 
 const editTask = (id) => {
+  selected = id;
+  addModalBtn.textContent = "Save";
   const { taskName, taskTime, taskLevel } = tasks[id];
   taskForm.taskName.value = taskName;
   taskForm.taskTime.value = taskTime;
@@ -88,8 +112,23 @@ const editTask = (id) => {
 
 openModalBtn.addEventListener("click", () => {
   const { taskName, taskTime, taskLevel } = taskForm.elements;
-
+  selected = null;
+  addModalBtn.textContent = "Add";
   taskName.value = "";
   taskTime.value = "";
   taskLevel.value = levels[0];
+});
+
+console.log(selected);
+
+searchInput.addEventListener("keyup", function () {
+  search = this.value.trim().toLowerCase();
+  getTasks();
+});
+
+filterLevel.addEventListener("change", function () {
+  level = this.value;
+  console.log(level);
+
+  getTasks();
 });
