@@ -1,7 +1,3 @@
-Albatta! Quyida sizning `todo-app` loyihangiz uchun **GitHub README.md** va loyiha **description** namunasi berilgan. U professional formatda yozilgan va foydalanuvchi ham, developer ham tez tushunadigan tarzda tuzilgan.
-
----
-
 ## 📄 `README.md`
 
 ```markdown
